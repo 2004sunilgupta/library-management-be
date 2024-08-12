@@ -7,7 +7,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 const userRoutes = require('./routes/userRoutes');
+const bookRoutes = require('./routes/bookRoutes');
 app.use('/api/users', userRoutes);
+app.use('/api/books', bookRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
