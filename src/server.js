@@ -6,7 +6,7 @@ const dbURI = process.env.DB_URL;
 const PORT = process.env.PORT || 3000;
 
 // Database connection
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbURI)
     .then(() => {
         console.log('Database connected');
         // Start the server
