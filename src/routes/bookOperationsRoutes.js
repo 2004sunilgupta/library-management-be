@@ -4,5 +4,8 @@ const bookOperationsController = require('../controllers/bookOperationsControlle
 
 // issue a book
 router.post('/issue', bookOperationsController.bookIssue);
+router.post('/return', bookOperationsController.bookReturn);
+router.post('/renew', bookOperationsController.bookRenew);
+router.post('/reserve', bookOperationsController.bookReserve);
 
 module.exports = router;
