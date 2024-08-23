@@ -63,3 +63,17 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+
+// Login
+exports.loginUser = async (req, res) => {
+  try {
+    const {email, password} = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).send('User not found');
+    if (user.password !== password) return res.send(404).send('password not matched');
+    res.json(user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
