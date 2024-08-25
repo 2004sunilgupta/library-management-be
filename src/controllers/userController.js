@@ -68,12 +68,20 @@ exports.deleteUser = async (req, res) => {
 // Login
 exports.loginUser = async (req, res) => {
   try {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user) return res.status(404).send('User not found');
-    if (user.password !== password) return res.send(404).send('password not matched');
-    res.json(user);
+
+    if (!user) {
+      return res.status(404).send('User not found');  // Stop further execution if user is not found
+    }
+
+    if (user.password !== password) {
+      return res.status(401).send('Password not matched');  // Stop further execution if password doesn't match
+    }
+
+    return res.json(user);  // Send the user data as a response if login is successful
   } catch (err) {
-    res.status(500).send(err);
+    console.error(err);  // Log the error for debugging purposes
+    return res.status(500).send('Internal Server Error');  // Send a generic error message to the client
   }
-}
+};
